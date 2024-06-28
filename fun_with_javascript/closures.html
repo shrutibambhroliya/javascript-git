@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="blue">blue</button>
+    <button id="green">green</button>
+  </body>
+
+  <script>
+    // laxicle scop
+
+    function outer() {
+      let username = "shruti";
+      //   console.log("secret", secret);
+
+      function inner() {
+        let secret = 123;
+        console.log("inner", username);
+      }
+
+      function innerTwo() {
+        console.log("innerTwo", username);
+        // console.log("secret", secret);
+      }
+
+      inner();
+      innerTwo();
+    }
+    outer();
+  </script>
+
+  <script>
+    // closures
+    // closures:-  parent ma child functiion call kare tyare aakho laxicle scope return kare che
+
+    function makeFunc() {
+      const name = "Mozilla";
+
+      function displayName() {
+        console.log(name);
+      }
+      return displayName;
+    }
+
+    const myFunc = makeFunc();
+    myFunc();
+  </script>
+
+  <script>
+    // document.getElementById("blue").onclick = function () {
+    //   document.body.style.backgroundColor = `blue`;
+    // };
+
+    // document.getElementById("green").onclick = function () {
+    //   document.body.style.backgroundColor = `green`;
+    // };
+
+    function changeColor(color) {
+      //   document.body.style.backgroundColor = `${color}`;
+
+      return function () {
+        document.body.style.backgroundColor = `${color}`;
+      };
+    }
+
+    document.getElementById("blue").onclick = changeColor("blue");
+    document.getElementById("green").onclick = changeColor("green");
+  </script>
+</html>
